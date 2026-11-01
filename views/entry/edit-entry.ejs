@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Entry</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <main>
+      <h1>Edit Entry</h1>
+      <form action="/entries/<%= entry._id %>/edit" method="post">
+        <div>
+          <label for="title">Title:</label>
+          <input name="title" id="title" type="text" value="<%= entry.title %>" maxlength="100" required />
+        </div>
+        <div>
+          <label for="entryBody">Description:</label>
+          <textarea name="entryBody" id="entryBody" rows="5" maxlength="350"><%= entry.entryBody ?? "" %></textarea>
+        </div>
+        <div>
+          <label for="isPublic">Is Public:</label>
+          <input name="isPublic" id="isPublic" type="checkbox" <%= entry.isPublic ? "checked" : "" %> />
+        </div>
+        <button type="submit">Save Entry</button>
+        <a href="/my-entries">Cancel</a>
+      </form>
+    </main>
+  </body>
+</html>

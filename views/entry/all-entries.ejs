@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Entries</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <main>
+        <h1>All Entries</h1>
+        <% if (user) { %>
+          <a class="button" href="/entries/new">Create new Entry</a>
+        <% } %>
+
+        <% if(entries.length === 0){ %>
+            <p>No public entries yet.</p>
+        <% } %>
+
+        <% for(let entry of entries){ %>
+            <article>
+                <h2><%= entry.title %></h2>
+                <p><%= entry.entryBody %></p>
+                <% if (user && entry.owner && entry.owner.toString() === user._id.toString()) { %>
+                  <a href="/entries/<%= entry._id %>/edit">Edit</a>
+                  <form action="/entries/<%= entry._id %>/delete" method="post">
+                    <button type="submit">Delete</button>
+                  </form>
+                <% } %>
+            </article>
+        <% } %>
+    </main>
+  </body>
+</html>

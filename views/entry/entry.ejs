@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Entry</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <form action="/entries" method="post">
+            <div>
+            <label for="title">Title:</label>
+            <input name="title" id="title" type="text" value="<%= entry.title ?? '' %>" maxlength="100" required>
+            </div>
+            <div>
+            <label for="entryBody">Description:</label>
+            <textarea name="entryBody" id="entryBody" rows="5" maxlength="350"><%= entry.entryBody ?? '' %></textarea>
+            </div>
+            <div>
+            <label for="isPublic">Is Public:</label>
+            <input name="isPublic" id="isPublic" type="checkbox" <%= entry.isPublic ? 'checked' : '' %>>
+            </div>
+            <button>Create Entry</button>
+            <a href="/entries">Cancel</a>
+        </form>
+  </body>
+</html>

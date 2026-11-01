@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Entries</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <main>
+      <h1>My Entries</h1>
+      <a href="/entries/new">Create new Entry</a>
+
+      <% if (entries.length === 0) { %>
+        <p>You have not created any entries yet.</p>
+      <% } %>
+
+      <% for (const entry of entries) { %>
+        <article>
+          <h2><%= entry.title %></h2>
+          <p><%= entry.entryBody %></p>
+          <p><%= entry.isPublic ? "Public" : "Private" %></p>
+          <a href="/entries/<%= entry._id %>/edit">Edit</a>
+          <form action="/entries/<%= entry._id %>/delete" method="post">
+            <button type="submit">Delete</button>
+          </form>
+        </article>
+      <% } %>
+    </main>
+  </body>
+</html>
